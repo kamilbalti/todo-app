@@ -44,6 +44,7 @@ function App() {
     setSubmitNum(submitNum+1)
     setInputVal("");
     setInputVal2("");
+    setredoArr([])
   };
 
 
@@ -57,6 +58,7 @@ function App() {
   const del = (index) => {
     setRealArr(realArr.filter((item2, index2) => index2 !== index));
     setTemp(temp + 1);
+    setredoArr([])
   };
 
 
@@ -69,6 +71,7 @@ function App() {
     setInputVal("");
     setInputVal2("");
     setNum(false);
+    setredoArr([])
   };
   
 
