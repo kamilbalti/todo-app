@@ -1,0 +1,47 @@
+.div{
+    background-color: gainsboro;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.mainDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightyellow;
+    justify-content: flex-start;
+    width: 50vw;
+    border: 5px solid black;
+    border-radius: 10%;
+}
+.h1{
+    font-size: 50px;
+    margin: 20px;
+}
+.input{
+    font-size: 20px;
+    height: 10vh;
+    width: 40vw;
+    text-align: center;
+    margin: 20px;
+}
+.button10{
+    margin: 20px;
+    font-size: 200%;
+    padding: 2% 10%;
+    color: white;
+    background-color: darkcyan;
+}
+.form{
+    border-top: none;
+    border-bottom: none;
+    border-radius: 0;
+}
+.para{
+    font-size: 110%;
+    color: red;
+}

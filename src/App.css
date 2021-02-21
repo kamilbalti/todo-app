@@ -1,10 +1,14 @@
+/* *{ */
+  /* box-sizing: border-box; */
+/* } */
+
 .App {
   text-align: center;
   height: 95vh;
 }
 
 .buttons{
-  margin-top: 0;
+  margin-top: 3vh;
 }
 
 .form{
@@ -15,6 +19,9 @@
 }
 
 h3{
+  display: flex;
+  justify-self: center;
+  align-self: center;
   font-size: 32px;
 }
 
@@ -52,11 +59,20 @@ background-color: orange
 
 .text{
   margin: auto;
-  width: 85vw;
+  width: 85%;
   margin-bottom: 0;
   color: darkblue;
-  font-size: 30px;
-  padding-bottom: 5vh;
+  font-size: 18px;
+}
+
+label{
+  font-size: 26px;
+}
+
+.search{
+  text-align: center;
+  width: 12%;
+  height: 5vh;
 }
 
 .App-logo {

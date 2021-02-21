@@ -1,13 +1,22 @@
+import RootReducer from "./store/rootreducer"
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from "redux"
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from "react-redux"
+// import SignIn from "./signIn";
+// import SignUp from "./signUp";
+import Router2 from "./router";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+const store = createStore(RootReducer);
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Provider store={store}>
+      {/* <App /> */}
+      <Router2 />
+    </Provider>,
   document.getElementById('root')
 );
 
