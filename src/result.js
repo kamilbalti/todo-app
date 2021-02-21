@@ -27,12 +27,15 @@ const Result = () => {
   };
 
   const del = (index) => {
-    const deleteArr = realArr.filter((item2, index2) => index2 != index);
+    const deleteArr = realArr.filter((item2, index2) => index2 !== index);
     // dispatch(setRealArr(realArr.filter((item2, index2) => index2 !== index)))
     firebase
       .database()
-      .ref("messages/" + uid + "/todo")
-      .set(deleteArr);
+      .ref("messages/" + uid)
+      .set({
+        todo: deleteArr,
+        undo: [...undoArr, realArr],
+      });
     // dispatch(setRealArr(deleteArr))
     // dispatch(setTemp(temp + 1))
     dispatch(setRedoArr([]));
@@ -40,22 +43,27 @@ const Result = () => {
   };
 
   const undo = () => {
+    // console.log("abc")
     dispatch(setInput1(""));
     dispatch(setInput2(""));
     dispatch(setNum(false));
     let redoArr2 = [...redoArr];
-    redoArr2.push(undoArr[undoArr.length - 1]);
+    redoArr2.push(realArr);
+    let tempUndoArr = [...undoArr];
     firebase
-      .database()
+    .database()
       .ref("messages/" + uid)
       .update({
-        todo: undoArr[undoArr?.length - 2],
-        undo: undoArr?.filter((item, index) => index < undoArr?.length - 1),
+        todo:
+        Array.isArray(undoArr) && undoArr.length 
+            ? tempUndoArr[tempUndoArr?.length - 1]
+            : [],
+        undo: !undoArr ? [] : tempUndoArr?.slice(0, tempUndoArr?.length - 1),
         redo: redoArr2,
       })
       .then(() => {})
       .catch((err) => {
-        console.log(err, "error");
+        // console.log(err, "error");
       });
     // undoArr2.pop();
     // dispatch(setRealArr(undoArr[undoArr.length - 2]))
@@ -70,10 +78,18 @@ const Result = () => {
     dispatch(setInput2(""));
     dispatch(setNum(false));
     // dispatch(setRealArr(redoArr[redoArr?.length - 1]))
+    let tempRedoArr = [...redoArr];
     firebase
       .database()
-      .ref("messages/" + uid + "/todo")
-      .update(undoArr[undoArr.length - 2]);
+      .ref("messages/" + uid)
+      .set({
+        todo:
+          Array.isArray(redoArr) && redoArr?.length
+            ? tempRedoArr[tempRedoArr?.length - 1]
+            : [],
+        undo: [...undoArr, realArr],
+        redo: tempRedoArr?.slice(0, tempRedoArr?.length - 1),
+      });
     // let undoArr2 = [...undoArr];
     // undoArr2.push(redoArr[redoArr?.length - 1]);
     // dispatch(setUndoArr(undoArr2))
@@ -96,26 +112,28 @@ const Result = () => {
 
   return (
     <div className="text">
-      {realArr?.sort(sorter)?.map((item, index) => (
-        <p key={index}>
-          {index + 1 + " )"}
-          &nbsp; &nbsp; &nbsp;
-          {item?.input1}
-          &nbsp; &nbsp; &nbsp;
-          {item?.input2}
-          <button className="button edit" onClick={() => edit(index)}>
-            Edit
-          </button>
-          <button className="button edit" onClick={() => del(index)}>
-            Delete
-          </button>
-        </p>
-      ))}
+      {Array.isArray(realArr)
+        ? realArr?.sort(sorter)?.map((item, index) => (
+            <p key={index}>
+              {index + 1 + " )"}
+              &nbsp; &nbsp; &nbsp;
+              {item?.input1}
+              &nbsp; &nbsp; &nbsp;
+              {item?.input2}
+              <button className="button edit" onClick={() => edit(index)}>
+                Edit
+              </button>
+              <button className="button edit" onClick={() => del(index)}>
+                Delete
+              </button>
+            </p>
+          ))
+        : []}
       <div className="buttons">
         <button
           className="button"
           onClick={() => undo()}
-          disabled={undoArr?.length < 2}
+          // disabled={!undoArr?.length}
         >
           undo
         </button>

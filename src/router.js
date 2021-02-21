@@ -13,12 +13,12 @@ const Router2 = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     firebase.auth().onAuthStateChanged((isUser) => {
-      console.log(isUser, "user1");
+      // console.log(isUser, "user1");
       dispatch(setUser(isUser));
-      console.log(user);
+      // console.log(user);
     });
   }, []);
-  console.log(user, "user");
+  // console.log(user, "user");
   if (user === "loading")
     return (
       <div
