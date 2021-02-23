@@ -1,3 +1,4 @@
+// import "./App.css"
 import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
 import { useSelector, useDispatch } from "react-redux";
@@ -68,13 +69,8 @@ const Dropdown = () => {
     <div className="text">
       <label>Search</label>
       &nbsp; &nbsp;
-      <input
-        className="search"
-        type="text"
-        placeholder="search here"
-        value={search}
-        onChange={(a) => searching(a.target.value)}
-      />
+      <input className="search" type="text" placeholder="search here" value={search}
+      onChange={(a) => searching(a.target.value)} />
       &nbsp; &nbsp;
       <label>sort by</label>
       &nbsp; &nbsp;

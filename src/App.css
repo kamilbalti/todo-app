@@ -1,14 +1,14 @@
-/* *{ */
-  /* box-sizing: border-box; */
-/* } */
-
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
   height: 95vh;
 }
 
 .buttons{
-  margin-top: 3vh;
+  margin-top: 0;
 }
 
 .form{
@@ -18,14 +18,18 @@
   /* justify-content: space-around; */
 }
 
+.search{
+  padding: 5px;
+  /* background-color: gray; */
+}
+
 h3{
-  display: flex;
-  justify-self: center;
   align-self: center;
   font-size: 32px;
 }
 
 .input{
+  text-align: center;
   align-self: center;
   height: 7vh;
   font-size: 25px;
@@ -53,26 +57,21 @@ background-color: orange
   height: 8vh;
 }
 
+input{
+  text-align: center;
+}
+
 .edit{
   padding: 2px 8px;
 }
 
 .text{
   margin: auto;
-  width: 85%;
+  width: 85vw;
   margin-bottom: 0;
   color: darkblue;
-  font-size: 18px;
-}
-
-label{
-  font-size: 26px;
-}
-
-.search{
-  text-align: center;
-  width: 12%;
-  height: 5vh;
+  font-size: 110%;
+  padding-bottom: 1vh;
 }
 
 .App-logo {
